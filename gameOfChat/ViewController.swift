@@ -8,18 +8,26 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+// Add other classes here
+class ViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        // This creates the "Logout" button on the navigation bar in the upper left.
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    // This is the handleLogout action
+    func handleLogout() {
+        
+        // Initiate the LoginController class
+        let loginController = LoginController()
+        
+        // This calls the loginController
+        present(loginController, animated: true, completion: nil)
     }
-
 
 }
 

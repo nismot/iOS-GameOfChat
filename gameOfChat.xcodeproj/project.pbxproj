@@ -13,6 +13,7 @@
 		E375388C1DA9265200CC442D /* gameOfChat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E375388A1DA9265200CC442D /* gameOfChat.xcdatamodeld */; };
 		E375388E1DA9265200CC442D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E375388D1DA9265200CC442D /* Assets.xcassets */; };
 		E37538911DA9265200CC442D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E375388F1DA9265200CC442D /* LaunchScreen.storyboard */; };
+		E375389A1DA93D3E00CC442D /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37538991DA93D3E00CC442D /* LoginController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		E375388D1DA9265200CC442D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E37538901DA9265200CC442D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E37538921DA9265200CC442D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E37538991DA93D3E00CC442D /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		E37538821DA9265200CC442D /* gameOfChat */ = {
 			isa = PBXGroup;
 			children = (
+				E37538981DA93C1E00CC442D /* Controllers */,
 				E37538831DA9265200CC442D /* AppDelegate.swift */,
 				E37538851DA9265200CC442D /* ViewController.swift */,
 				E37538871DA9265200CC442D /* Main.storyboard */,
@@ -65,6 +68,14 @@
 				E375388A1DA9265200CC442D /* gameOfChat.xcdatamodeld */,
 			);
 			path = gameOfChat;
+			sourceTree = "<group>";
+		};
+		E37538981DA93C1E00CC442D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E37538991DA93D3E00CC442D /* LoginController.swift */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,6 +153,7 @@
 				E37538861DA9265200CC442D /* ViewController.swift in Sources */,
 				E375388C1DA9265200CC442D /* gameOfChat.xcdatamodeld in Sources */,
 				E37538841DA9265200CC442D /* AppDelegate.swift in Sources */,
+				E375389A1DA93D3E00CC442D /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
