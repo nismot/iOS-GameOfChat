@@ -10,6 +10,36 @@ import UIKit
 
 class LoginController: UIViewController {
     
+    // You can still initiate your view the old way instead of doing it like this.
+    // This is just a cleaner/nicer way of putting it together.
+    let inputsContainerView: UIView = {
+    
+        let view = UIView()
+        view.backgroundColor = UIColor.white
+    
+        // If set to true, the view superview looks at the autoresizing mask, produces constraints that implement it, and adds those constraints to itself.
+        // If set to false, indicates that you will implement contraints yourself.
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        // This gives us the corner radius on our container
+        view.layer.cornerRadius = 5
+        
+        // The corner radius will not be visible until we add maskToBounds = true
+        view.layer.masksToBounds = true
+    
+        return view
+    }() //executes the block
+    
+    // loginRegisterButton
+    let loginRegisterButton: UIButton = {
+        let button = UIButton(type: .system) //.(type: .System)
+        button.backgroundColor = UIColor(r: 80, g: 101, b: 161)
+        button.setTitle("Register", for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,24 +50,36 @@ class LoginController: UIViewController {
         // Here we replaced the old background with our convience extension below.
         view.backgroundColor = UIColor(r: 61, g: 91, b: 151)
         
-        let inputsContainerView = UIView()
-        inputsContainerView.backgroundColor = UIColor.white
-        
-        // If set to true, the view superview looks at the autoresizing mask, produces constraints that implement it, and adds those constraints to itself.
-        // If set to false, indicates that you will implement contraints yourself.
-        inputsContainerView.translatesAutoresizingMaskIntoConstraints = false
         
         // This is needed for it to actually show up on the view.
         view.addSubview(inputsContainerView)
+        view.addSubview(loginRegisterButton)
         
+        setupInputsContainerView()
+        setupLoginRegisterButton()
+    }
+    
+    // Constraints for the inputsContainerView
+    func setupInputsContainerView() {
         // need x, y, width, height constraints
         inputsContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         inputsContainerView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         inputsContainerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -24).isActive = true
         inputsContainerView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        
     }
     
-    // This makes the status bar at the top white. Status bar is the small strip the has the carrier signal, time, and battery life.
+    // Constraints for the loginRegisterButton
+    func setupLoginRegisterButton() {
+        // need x, y, width, height constraints
+        loginRegisterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        loginRegisterButton.topAnchor.constraint(equalTo: inputsContainerView.bottomAnchor, constant: 12).isActive = true
+        loginRegisterButton.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+        loginRegisterButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+    }
+    
+    // This makes the status bar (text) at the top white. Status bar is the small strip the has the carrier signal, time, and battery life.
     override var preferredStatusBarStyle: UIStatusBarStyle{
         return .lightContent
     }
