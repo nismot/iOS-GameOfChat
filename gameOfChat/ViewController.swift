@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 // Add other classes here
 class ViewController: UITableViewController {

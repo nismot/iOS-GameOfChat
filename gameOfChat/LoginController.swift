@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginController: UIViewController {
     
@@ -31,15 +32,56 @@ class LoginController: UIViewController {
     }() //executes the block
     
     // loginRegisterButton
-    let loginRegisterButton: UIButton = {
+    // lazy var lets us have access to self instance.
+    lazy var loginRegisterButton: UIButton = {
         let button = UIButton(type: .system) //.(type: .System)
         button.backgroundColor = UIColor(r: 80, g: 101, b: 161)
         button.setTitle("Register", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Adding the action to this button
+        button.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
+        
         return button
     }()
+    
+    // This is our action function for our register button. Upon clicking it authenticates the user against Firebase.
+    func handleRegister() {
+        guard let email = emailTextField.text, let password = passwordTextField.text, let name = nameTextField.text else {
+            
+            print("Form is not valid")
+            return
+        }
+        
+        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: {(user: FIRUser?, error) in
+            if error != nil {
+                print(error)
+                return
+            }
+            
+            // This sets up the users in the database to have unique id's. They will be listed under unique id's in the database.
+            guard let uid = user?.uid else {
+                return
+            }
+            
+            // seccessfully authenticated user
+            //This is our link the Firebase database
+            let ref = FIRDatabase.database().reference(fromURL: "https://gameofchat-584ea.firebaseio.com/")
+            let usersReference = ref.child("users").child(uid)
+            let values = ["name": name, "email": email]
+            usersReference.updateChildValues(values, withCompletionBlock: {(err, ref) in
+                if err != nil {
+                    print(err)
+                    return
+                }
+                
+                print("Saved user successfully into Firebase db")
+            })
+        
+        })
+    }
     
     // Name text field
     let nameTextField: UITextField = {
